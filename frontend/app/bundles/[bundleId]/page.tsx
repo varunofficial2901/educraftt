@@ -39,7 +39,7 @@ const BUNDLES_DATA: Record<string, {
     testsPerSubject: 20,
     benefits: [
       "Extended repository of exam-style mock tests.",
-      "In-depth reasoning and advanced numerical exercises.",
+      "In-depth thinking skills and advanced mathematical reasoning exercises.",
       "Comprehensive reading comprehension modules covering inference and analysis.",
       "Access to medium and high difficulty practice sets.",
       "Detailed progress monitoring tools on the Student Dashboard."
@@ -56,16 +56,16 @@ const BUNDLES_DATA: Record<string, {
       "Strongly aligned with NSW curriculum outcomes.",
       "Complete set of challenging mock papers matching selective tests.",
       "Comprehensive writing prompt evaluations (teacher-reviewed format).",
-      "Full coverage of advanced numerical, logical, and verbal reasoning.",
+      "Full coverage of advanced mathematical reasoning, logical, and verbal thinking skills.",
       "Priority updates when new test papers and exercises are published."
     ]
   }
 };
 
 const SUBJECT_DESCRIPTIONS = {
-  math: "Build numerical fluency, confidence, and exam readiness through structured practice.",
-  reasoning: "Strengthen logical thinking, analytical skills, and problem-solving ability.",
-  reading: "Improve comprehension, interpretation, inference, and vocabulary development.",
+  math: "Build mathematical reasoning fluency, confidence, and exam readiness through structured practice.",
+  reasoning: "Strengthen thinking skills, logical thinking, analytical skills, and problem-solving ability.",
+  reading: "Improve selective reading comprehension, interpretation, inference, and vocabulary development.",
   writing: "Receive teacher-reviewed writing assessments with detailed feedback reports designed to improve grammar, vocabulary, structure, and written communication skills."
 };
 
@@ -166,10 +166,10 @@ export default function BundleDetailPage({ params }: { params: any }) {
     );
   };
 
-  const SUBJECTS = [
-    { slug: "mathematics", name: "Mathematics", icon: Calculator, color: "text-[#16A34A]", bg: "bg-[#F0FDF4]", desc: SUBJECT_DESCRIPTIONS.math },
-    { slug: "reasoning", name: "Reasoning", icon: Brain, color: "text-[#6366F1]", bg: "bg-[#EEF2FF]", desc: SUBJECT_DESCRIPTIONS.reasoning },
-    { slug: "reading-skills", name: "Reading Skills", icon: BookOpen, color: "text-[#EA580C]", bg: "bg-[#FFF7ED]", desc: SUBJECT_DESCRIPTIONS.reading },
+   const SUBJECTS = [
+    { slug: "mathematics", name: "Mathematical Reasoning", icon: Calculator, color: "text-[#16A34A]", bg: "bg-[#F0FDF4]", desc: SUBJECT_DESCRIPTIONS.math },
+    { slug: "reasoning", name: "Thinking Skills", icon: Brain, color: "text-[#6366F1]", bg: "bg-[#EEF2FF]", desc: SUBJECT_DESCRIPTIONS.reasoning },
+    { slug: "reading-skills", name: "Selective Reading", icon: BookOpen, color: "text-[#EA580C]", bg: "bg-[#FFF7ED]", desc: SUBJECT_DESCRIPTIONS.reading },
     { slug: "writing-skills", name: "Writing Skills", icon: PenTool, color: "text-[#8B5CF6]", bg: "bg-[#F5F3FF]", desc: SUBJECT_DESCRIPTIONS.writing }
   ];
 

@@ -3,7 +3,7 @@
 import React, { use, useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowLeft, Calculator, Brain, BookOpen, PenTool, Play, CheckCircle, Lock } from "lucide-react";
-import { mathAssessment, mockTest, writingAssessment } from "@/app/quiz/data/mockTest";
+import { mathAssessment, mockTest, writingAssessment, readingAssessment } from "@/app/quiz/data/mockTest";
 
 const BUNDLE_NAMES: Record<string, string> = {
   foundation: "Foundation Bundle",
@@ -18,9 +18,9 @@ const BUNDLE_TEST_COUNTS: Record<string, number> = {
 };
 
 const SUBJECT_METADATA: Record<string, { name: string; icon: any; color: string; bg: string }> = {
-  mathematics: { name: "Mathematics", icon: Calculator, color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" },
-  reasoning: { name: "Reasoning", icon: Brain, color: "text-[#6366F1]", bg: "bg-[#EEF2FF]" },
-  "reading-skills": { name: "Reading Skills", icon: BookOpen, color: "text-[#EA580C]", bg: "bg-[#FFF7ED]" },
+  mathematics: { name: "Mathematical Reasoning", icon: Calculator, color: "text-[#16A34A]", bg: "bg-[#F0FDF4]" },
+  reasoning: { name: "Thinking Skills", icon: Brain, color: "text-[#6366F1]", bg: "bg-[#EEF2FF]" },
+  "reading-skills": { name: "Selective Reading", icon: BookOpen, color: "text-[#EA580C]", bg: "bg-[#FFF7ED]" },
   "writing-skills": { name: "Writing Skills", icon: PenTool, color: "text-[#8B5CF6]", bg: "bg-[#F5F3FF]" }
 };
 
@@ -70,22 +70,27 @@ export default function SubjectTestsPage({ params }: { params: any }) {
 
   // Determine quiz link for testing
   let testLink = "";
-  let duration = "45 Minutes";
-  let marks = "40 Marks";
+  let duration = "40 Minutes";
+  let marks = "35 Marks";
   let active = true;
 
   if (subjectSlug === "mathematics") {
     testLink = `/quiz/${mathAssessment.id}/instructions`;
-    duration = "60 Minutes";
+    duration = "40 Minutes";
+    marks = "35 Marks";
   } else if (subjectSlug === "reasoning") {
     testLink = `/quiz/${mockTest.id}/instructions`;
-    duration = "60 Minutes";
+    duration = "40 Minutes";
+    marks = "40 Marks";
+  } else if (subjectSlug === "reading-skills") {
+    testLink = `/quiz/${readingAssessment.id}/instructions`;
+    duration = "45 Minutes";
+    marks = "38 Marks";
   } else if (subjectSlug === "writing-skills") {
     testLink = `/quiz/${writingAssessment.id}/instructions`;
     duration = "30 Minutes";
     marks = "20 Marks";
   } else {
-    // Reading is Coming Soon
     active = false;
   }
 

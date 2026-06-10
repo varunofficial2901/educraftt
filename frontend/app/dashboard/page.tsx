@@ -72,7 +72,7 @@ export default function DashboardPage() {
 
   const getSubjectIcon = (title: string) => {
     if (title.toLowerCase().includes("math")) return Calculator;
-    if (title.toLowerCase().includes("reason")) return Brain;
+    if (title.toLowerCase().includes("reason") || title.toLowerCase().includes("think")) return Brain;
     if (title.toLowerCase().includes("read")) return BookOpen;
     return PenTool;
   };

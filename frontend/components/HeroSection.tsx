@@ -1,9 +1,46 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Shield } from "lucide-react";
 
 export default function HeroSection() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const slides = [
+    {
+      url: "/landing1.jpg",
+      alt: "Mathematical Reasoning"
+      // title: "Mathematical Reasoning",
+      // desc: "Curriculum-aligned preparation"
+    },
+    {
+      url: "/landing2.jpeg",
+      alt: "Thinking Skills"
+      // title: "Thinking Skills",
+      // desc: "Develop sharp logic and problem-solving confidence"
+    },
+    {
+      url: "/landing3.jpeg",
+      alt: "Selective Reading"
+      // title: "Selective Reading",
+      // desc: "Enhance comprehension & critical reading"
+    },
+    {
+      url: "/landing4.jpeg",
+      alt: "Writing Skills"
+      // title: "Writing Skills",
+      // desc: "Master creative and persuasive writing"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   const scrollToNext = () => {
     const nextSection = document.getElementById('courses');
     if (nextSection) {
@@ -16,12 +53,44 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
           
-          {/* Left Side: Image Placeholder (40-45%) */}
-          <div className="w-full md:w-[45%] h-[400px] md:h-[550px] relative rounded-3xl overflow-hidden shrink-0 bg-gradient-to-br from-indigo-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-indigo-100 dark:border-slate-700 flex flex-col items-center justify-center text-[#64748B] text-center p-6 gap-3 select-none">
-            {/* <span className="text-6xl">📚</span> */}
-            <div>
-              <p className="font-serif font-bold text-xl text-[#0F172A] dark:text-white">Hero Image Area</p>
-              <p className="font-sans text-xs text-[#64748B] mt-1">Responsive Placeholder (Aspect Ratio ~3:4)</p>
+          {/* Left Side: Image Carousel */}
+          <div className="w-full md:w-[45%] h-[400px] md:h-[550px] relative rounded-3xl overflow-hidden shrink-0 bg-gradient-to-br from-indigo-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border border-indigo-100 dark:border-slate-700 select-none group">
+            {slides.map((slide, idx) => (
+              <div
+                key={idx}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  idx === activeSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                }`}
+              >
+                <img
+                  src={slide.url}
+                  alt={slide.alt}
+                  className="w-full h-full object-cover"
+                />
+                {/* Beautiful overlay for text description */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex flex-col justify-end p-6 text-left text-white">
+                  <h4 className="font-serif font-bold text-xl md:text-2xl mb-1 drop-shadow-sm">
+                    {/* {slide.title} */}
+                  </h4>
+                  <p className="font-sans text-xs md:text-sm text-white/90 drop-shadow-sm">
+                    {/* {slide.desc} */}
+                  </p>
+                </div>
+              </div>
+            ))}
+            
+            {/* Dots */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+              {slides.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveSlide(idx)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all ${
+                    idx === activeSlide ? "bg-white scale-110" : "bg-white/50"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
 
@@ -47,7 +116,7 @@ export default function HeroSection() {
             {/* Subheading */}
             <p className="text-[#334155] text-lg font-sans max-w-lg mb-10 leading-relaxed">
               Personalised assessments, targeted practice, and measurable progress tracking
-              to strengthen Maths, Reasoning and Reading skills.
+              to strengthen Mathematical Reasoning, Thinking Skills and Selective Reading skills.
             </p>
 
             {/* Buttons */}

@@ -109,7 +109,7 @@ export default function TakePage() {
                 <p className="text-indigo-600 dark:text-indigo-400 font-inter font-semibold mb-2">
                   Q. {state.currentQuestion + 1} of {currentTest.totalQuestions}
                 </p>
-                <h2 className="font-inter text-2xl md:text-3xl font-semibold text-gray-900 dark:text-white mb-4">
+                <h2 className="font-inter text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-4 whitespace-pre-wrap">
                   {current?.text}
                 </h2>
                 {currentTest.type !== "writing" && (

@@ -3,20 +3,20 @@
 import { useState } from "react";
 import { Calculator, BookOpen, Brain, PenTool, Gift, CheckCircle2 } from "lucide-react";
 import Link from "next/link";
-import { mathAssessment, mockTest } from "@/app/quiz/data/mockTest";
+import { mathAssessment, mockTest, readingAssessment, writingAssessment } from "@/app/quiz/data/mockTest";
 import { useCart } from "@/components/CartContext";
 
 const FREE_ASSESSMENTS = [
   {
-    id: "Mathematics",
-    title: "Mathematics",
-    desc: "Test core numerical, geometry, and problem-solving skills in 60 minutes.",
+    id: "Mathematical Reasoning",
+    title: "Mathematical Reasoning",
+    desc: "Test core numerical, geometry, and algebra skills in 40 minutes.",
     icon: Calculator,
     quizId: mathAssessment.id,
     active: true,
     details: [
-      "40 Questions",
-      "Duration: 60 Minutes",
+      "35 Questions",
+      "Duration: 40 Minutes",
       "Aligned with NSW Curriculum",
       "Instant Result",
       "Know Your Starting Point",
@@ -24,28 +24,12 @@ const FREE_ASSESSMENTS = [
     ]
   },
   {
-    id: "Reasoning",
-    title: "Reasoning",
+    id: "Thinking Skills",
+    title: "Thinking Skills",
     desc: "Develop sharp logical thinking, analytical reasoning, and problem-solving confidence.",
     icon: Brain,
     quizId: mockTest.id,
     active: true,
-    details: [
-      "40 Questions",
-      "Duration: 60 Minutes",
-      "Aligned with NSW Curriculum",
-      "Instant Result",
-      "Know Your Starting Point",
-      "Spot The Gaps Before The Exam Does"
-    ]
-  },
-  {
-    id: "Reading Skills",
-    title: "Reading Skills",
-    desc: "Strengthen comprehension, vocabulary, and critical reading skills for academic success.",
-    icon: BookOpen,
-    quizId: "reading-skills-free",
-    active: false,
     details: [
       "40 Questions",
       "Duration: 40 Minutes",
@@ -55,6 +39,22 @@ const FREE_ASSESSMENTS = [
       "Spot The Gaps Before The Exam Does"
     ]
   },
+  {
+    id: "Selective Reading",
+    title: "Selective Reading",
+    desc: "Strengthen comprehension, vocabulary, and critical reading skills for academic success.",
+    icon: BookOpen,
+    quizId: readingAssessment.id,
+    active: true,
+    details: [
+      "38 Questions",
+      "Duration: 45 Minutes",
+      "Aligned with NSW Curriculum",
+      "Instant Result",
+      "Know Your Starting Point",
+      "Spot The Gaps Before The Exam Does"
+    ]
+  }
 ];
 
 const BUNDLES = [
@@ -65,11 +65,12 @@ const BUNDLES = [
     price: 79,
     duration: "1 Year",
     testsPerSubject: 10,
-    subjects: ["Mathematics", "Reasoning", "Reading Skills", "Writing Skills"],
+    totalTests: 40,
+    subjects: ["Mathematical Reasoning", "Thinking Skills", "Selective Reading", "Writing Skills"],
     bgTint: "bg-[#F0FDF4]",
     textClass: "text-[#16A34A]",
-    totalQuestions: 1600,
-    studyHours: 40,
+    totalQuestionsText: "1,200+",
+    prepTime: "26+ Hours",
   },
   {
     id: "advance-bundle",
@@ -78,11 +79,12 @@ const BUNDLES = [
     price: 129,
     duration: "1 Year",
     testsPerSubject: 20,
-    subjects: ["Mathematics", "Reasoning", "Reading Skills", "Writing Skills"],
+    totalTests: 80,
+    subjects: ["Mathematical Reasoning", "Thinking Skills", "Selective Reading", "Writing Skills"],
     bgTint: "bg-[#EEF2FF]",
     textClass: "text-[#6366F1]",
-    totalQuestions: 3200,
-    studyHours: 80,
+    totalQuestionsText: "2,300+",
+    prepTime: "52+ Hours",
   },
   {
     id: "mastery-bundle",
@@ -91,11 +93,12 @@ const BUNDLES = [
     price: 247,
     duration: "2 Years",
     testsPerSubject: 40,
-    subjects: ["Mathematics", "Reasoning", "Reading Skills", "Writing Skills"],
+    totalTests: 160,
+    subjects: ["Mathematical Reasoning", "Thinking Skills", "Selective Reading", "Writing Skills"],
     bgTint: "bg-[#FFF7ED]",
     textClass: "text-[#EA580C]",
-    totalQuestions: 6400,
-    studyHours: 160,
+    totalQuestionsText: "4,500+",
+    prepTime: "100+ Hours",
   },
 ];
 
@@ -263,7 +266,7 @@ export default function CoursesPage() {
                       <span className={`font-sans text-sm font-semibold ${
                         bundle.id === "mastery-bundle" ? "text-white" : "text-[#334155]"
                       }`}>
-                        {bundle.testsPerSubject} Tests Per Subject
+                        Tests: {bundle.totalTests}
                       </span>
                     </li>
                     <li className="flex items-center gap-2.5">
@@ -279,7 +282,7 @@ export default function CoursesPage() {
                       <span className={`font-sans text-sm ${
                         bundle.id === "mastery-bundle" ? "text-white" : "text-[#334155]"
                       }`}>
-                        Subjects: Mathematics, Reasoning, Reading Skills, Writing Skills
+                        Subjects: {bundle.subjects.join(", ")}
                       </span>
                     </li>
                     <li className="flex items-center gap-2.5">
@@ -287,7 +290,7 @@ export default function CoursesPage() {
                       <span className={`font-sans text-sm font-semibold ${
                         bundle.id === "mastery-bundle" ? "text-white" : "text-[#334155]"
                       }`}>
-                        {bundle.totalQuestions}+ Questions
+                        Questions: {bundle.totalQuestionsText}
                       </span>
                     </li>
                     <li className="flex items-center gap-2.5">
@@ -295,7 +298,7 @@ export default function CoursesPage() {
                       <span className={`font-sans text-sm ${
                         bundle.id === "mastery-bundle" ? "text-white" : "text-[#334155]"
                       }`}>
-                        {bundle.studyHours} Hours Study Material
+                        Preparation Time: {bundle.prepTime}
                       </span>
                     </li>
                     <li className="flex items-center gap-2.5">

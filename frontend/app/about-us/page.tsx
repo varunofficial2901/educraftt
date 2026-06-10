@@ -27,7 +27,7 @@ export default function AboutUsPage() {
               Our mission
             </h2>
             <p>
-              We believe every learner deserves a structured, low-stress pathway to academic confidence. Our assessments are designed to identify strengths, highlight improvement areas, and give students practical practice in the exact reasoning and literacy skills that matter.
+              We believe every learner deserves a structured, low-stress pathway to academic confidence. Our assessments are designed to identify strengths, highlight improvement areas, and give students practical practice in the exact thinking skills and literacy skills that matter.
             </p>
           </section>
 
@@ -60,7 +60,7 @@ export default function AboutUsPage() {
               Why families choose EduCraft
             </h2>
             <p>
-              We create easy-to-use tools that help students stay calm under timed conditions, learn from each attempt, and improve their reasoning skills in a measurable way.
+              We create easy-to-use tools that help students stay calm under timed conditions, learn from each attempt, and improve their thinking skills in a measurable way.
             </p>
             <p>
               Every bundle is crafted to mirror exam-style challenges while keeping the experience supportive, clear, and focused on progress.

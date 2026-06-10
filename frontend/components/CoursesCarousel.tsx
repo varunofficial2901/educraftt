@@ -6,8 +6,8 @@ import Link from "next/link";
 const COURSES = [
   {
     id: 1,
-    title: "Mathematics",
-    description: "Core numerical skills and curriculum-aligned mathematical mastery.",
+    title: "Mathematical Reasoning",
+    description: "Core numerical skills and curriculum-aligned mathematical reasoning mastery.",
     icon: Calculator,
     accent: "#16A34A",
     bgTint: "bg-[#F0FDF4]",
@@ -17,8 +17,8 @@ const COURSES = [
   },
   {
     id: 2,
-    title: "Reading Skills",
-    description: "Comprehension, vocabulary, and critical reading confidence.",
+    title: "Selective Reading",
+    description: "Comprehension, vocabulary, and critical selective reading confidence.",
     icon: BookOpen,
     accent: "#EA580C",
     bgTint: "bg-[#FFF7ED]",
@@ -28,7 +28,7 @@ const COURSES = [
   },
   {
     id: 3,
-    title: "Reasoning",
+    title: "Thinking Skills",
     description: "Sharp logical thinking, analytical reasoning, and problem-solving.",
     icon: Brain,
     accent: "#6366F1",
@@ -61,7 +61,7 @@ export default function CoursesCarousel() {
             What Your Child Will Master
           </h2>
           <p className="text-[#334155] text-lg font-sans leading-relaxed">
-            Structured learning across Mathematics, English, Reasoning, and Writing — with timed
+            Structured learning across Mathematical Reasoning, Thinking Skills, Selective Reading, and Writing Skills — with timed
             tests, detailed performance insights, and targeted practice designed to build confidence
             and measurable academic growth.
           </p>
