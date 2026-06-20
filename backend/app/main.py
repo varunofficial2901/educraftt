@@ -30,7 +30,9 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:3001",
-        "http://localhost:3002",  # ← yeh add karo  # ← add this
+        "http://localhost:3002",
+        "https://educrafttadminpanel.vercel.app",
+        "https://educraftt-ekzsux230-varunofficial2901s-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
