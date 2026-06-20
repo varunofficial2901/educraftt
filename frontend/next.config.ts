@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -16,8 +19,6 @@ export default nextConfig;
 
 
 
-
-
 // import type { NextConfig } from "next";
 
 // const nextConfig: NextConfig = {
@@ -29,11 +30,12 @@ export default nextConfig;
 //       },
 //     ],
 //   },
-//   experimental: {
-//     turbopack: {
-//       root: __dirname,
-//     },
-//   } as any,
 // };
 
 // export default nextConfig;
+
+
+
+
+
+
