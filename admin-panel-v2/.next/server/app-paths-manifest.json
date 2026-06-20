@@ -1,9 +1,7 @@
 {
-  "/bundles/page": "app/bundles/page.js",
-  "/students/page": "app/students/page.js",
-  "/enrollments/page": "app/enrollments/page.js",
-  "/bundles/[bundleId]/page": "app/bundles/[bundleId]/page.js",
-  "/tests/page": "app/tests/page.js",
-  "/analytics/page": "app/analytics/page.js",
-  "/settings/page": "app/settings/page.js"
+  "/_not-found/page": "app/_not-found/page.js",
+  "/page": "app/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/writing-submissions/page": "app/writing-submissions/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js"
 }

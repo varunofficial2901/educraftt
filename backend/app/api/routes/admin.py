@@ -1152,6 +1152,44 @@ async def delete_coupon(coupon_id: str, admin=Depends(get_current_admin), db=Dep
     return {"message": "Coupon deleted"}
 
 
+@router.get("/writing-submissions")
+async def list_writing_submissions(admin=Depends(get_current_admin), db=Depends(get_database)):
+    subs = await db["writing_submissions"].find().sort("submitted_at", -1).to_list(200)
+    return {
+        "data": [
+            {
+                "_id":            str(s["_id"]),
+                "test_id":        s.get("test_id", ""),
+                "test_title":     s.get("test_title", ""),
+                "student_name":   s.get("student_name", ""),
+                "student_email":  s.get("student_email", ""),
+                "prompt":         s.get("prompt", ""),
+                "response":       s.get("response", ""),
+                "word_count":     s.get("word_count", 0),
+                "status":         s.get("status", "pending"),
+                "feedback":       s.get("feedback", ""),
+                "grade":          s.get("grade"),
+                "submitted_at":   s.get("submitted_at"),
+            }
+            for s in subs
+        ]
+    }
+
+
+@router.patch("/writing-submissions/{submission_id}/review")
+async def review_writing_submission(submission_id: str, body: dict, admin=Depends(get_current_admin), db=Depends(get_database)):
+    updates = {
+        "status":   "reviewed",
+        "feedback": body.get("feedback", ""),
+        "grade":    body.get("grade"),
+    }
+    result = await db["writing_submissions"].find_one_and_update(
+        {"_id": oid(submission_id)}, {"$set": updates}, return_document=True
+    )
+    if not result:
+        raise HTTPException(status_code=404, detail="Submission not found")
+    return {"data": {**result, "_id": str(result["_id"])}}
+
 
 
 

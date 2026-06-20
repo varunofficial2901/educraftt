@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard, Package, FileText, Users, BookOpen,
-  MessageSquare, BarChart3, Settings, LogOut, ChevronLeft, ChevronRight, Tag
+  MessageSquare, BarChart3, Settings, LogOut, ChevronLeft, ChevronRight, Tag, PenTool
 } from 'lucide-react';
 import { useState } from 'react';
 
@@ -16,6 +16,7 @@ const NAV = [
   { href: '/messages',    icon: MessageSquare,    label: 'Messages' },
   { href: '/analytics',   icon: BarChart3,        label: 'Analytics' },
   { href: '/coupons',     icon: Tag,              label: 'Coupons' },
+  { href: '/writing-submissions', icon: PenTool,  label: 'Writing Submissions' },
   { href: '/settings',    icon: Settings,         label: 'Settings' },
 ];
 

@@ -44,8 +44,11 @@ export default function ResultsPage() {
         });
         localStorage.setItem("edu_recent_assessments", JSON.stringify(list.slice(0, 10)));
 
-        // ─── Backend mein save karo ───────────────────────────────
-        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/public/quiz/results`, {
+        // REPLACE WITH:
+// ─── Backend mein save karo ───────────────────────────────
+        const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+        fetch(`${API_URL}/api/public/quiz/results`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -62,6 +65,38 @@ export default function ResultsPage() {
             type:        currentTest.type || "mcq",
           }),
         }).catch(err => console.error('Failed to save result:', err));
+
+        // ─── Writing submission ko alag se save karo (full essay text) ──
+        if (currentTest.type === "writing") {
+          const userObj = localStorage.getItem("edu_user");
+          let studentName = "Anonymous";
+          let studentEmail = "";
+          try {
+            const parsed = userObj ? JSON.parse(userObj) : null;
+            if (parsed) {
+              studentName = `${parsed.first_name || ''} ${parsed.last_name || ''}`.trim() || "Anonymous";
+              studentEmail = parsed.email || "";
+            }
+          } catch (e) {}
+
+          const writingQuestion = currentTest.questions[0];
+          const writingResponse = state.answers[writingQuestion?.id] || "";
+
+          fetch(`${API_URL}/api/public/writing-submissions`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              test_id:        currentTest.id,
+              test_title:     currentTest.title,
+              student_name:   studentName,
+              student_email:  studentEmail,
+              prompt:         writingQuestion?.text || "",
+              response:       writingResponse,
+              word_count:     writingResponse.trim().split(/\s+/).filter(Boolean).length,
+              time_taken:     results.timeSpent,
+            }),
+          }).catch(err => console.error('Failed to save writing submission:', err));
+        }
         // ─────────────────────────────────────────────────────────
       }
     }

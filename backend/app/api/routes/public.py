@@ -190,7 +190,25 @@ async def use_coupon(body: dict, db=Depends(get_database)):
     )
     return {"message": "ok"}
 
-
+@router.post("/writing-submissions")
+async def save_writing_submission(body: dict, db=Depends(get_database)):
+    """Student ka written essay save karo for admin review"""
+    doc = {
+        "test_id":       body.get("test_id", ""),
+        "test_title":    body.get("test_title", ""),
+        "student_name":  body.get("student_name", "Anonymous"),
+        "student_email": body.get("student_email", ""),
+        "prompt":        body.get("prompt", ""),
+        "response":      body.get("response", ""),
+        "word_count":    body.get("word_count", 0),
+        "time_taken":    body.get("time_taken", 0),
+        "status":        "pending",  # pending | reviewed
+        "feedback":      "",
+        "grade":         None,
+        "submitted_at":  datetime.now(timezone.utc),
+    }
+    result = await db["writing_submissions"].insert_one(doc)
+    return {"message": "Submission saved", "id": str(result.inserted_id)}
 
 
 
