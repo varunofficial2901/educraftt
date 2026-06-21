@@ -23,21 +23,21 @@ app = FastAPI(
 )
 
 # ─── CORS ─────────────────────────────────────────────────────────────────────
-from fastapi.middleware.cors import CORSMiddleware
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
         "http://localhost:3001",
         "http://localhost:3002",
-        "https://educrafttadminpanel.vercel.app",
+        "https://educraftt.vercel.app",            # ← frontend
+        "https://educrafttadminpanel.vercel.app",  # ← admin panel
         "https://educraftt-ekzsux230-varunofficial2901s-projects.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ─── ROUTES ───────────────────────────────────────────────────────────────────
 app.include_router(auth.router,     prefix="/api/v1")
